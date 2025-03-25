@@ -29,11 +29,12 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
     protected function authenticated(Request $request, $user)
-    {
-        if ($user->role === 'admmin') {
-            return redirect('/admin/dashboard');
-        { else {
-            return redirect('/user/dashboard');
-        }
+{
+    if ($user->role === 'admin') {  // Correct role spelling
+        return redirect('/admin/dashboard');
+    } else {
+        return redirect('/user/dashboard');
     }
 }
+}
+
