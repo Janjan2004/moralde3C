@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -15,7 +16,7 @@ class RegisterController extends Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
+    | validation and creation. By default, this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
     */
@@ -62,11 +63,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Ensure the role is set (default is 'user', but you can modify this as needed)
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role' => 'user',
+            'password' => Hash::make($data['password']), // Hash password before saving
+            'role' => $data['role'] ?? 'user', // Ensure a role is set, default to 'user' if not provided
         ]);
     }
 }
