@@ -1,11 +1,16 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request; // Import the correct Request class
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\Models\Role;
+use App\Http\Middleware\ifAdmin;
+use App\Http\Middleware\ifUser;
 class LoginController extends Controller
+
 {
     use AuthenticatesUsers;
 
@@ -37,9 +42,9 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->role === 'admin') {  // Correct role spelling
-            return redirect('/admin/dashboard');
+            return redirect('/admin/home');
         } else {
-            return redirect('/user/dashboard');
+            return redirect('/user/home');
         }
     }
 }
