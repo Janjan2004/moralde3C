@@ -19,7 +19,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -30,21 +30,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
-    }
-
-    /**
-     * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    protected function authenticated(Request $request, $user)
-    {
-        if ($user->role === 'admin') {  // Correct role spelling
-            return redirect('/admin/home');
-        } else {
-            return redirect('/user/home');
-        }
     }
 }

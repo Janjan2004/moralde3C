@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\Role;
 use Auth;
 
-class ifadmin
+class ifUser
 {
     public function handle(Request $request, Closure $next): Response
     {
